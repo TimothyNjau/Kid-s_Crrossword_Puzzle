@@ -1,0 +1,37 @@
+@media(max-width:450px){
+   body{
+      font-size: 16px;
+   }
+}
+@media (max-width:900px) {
+   body{
+      font-size: 20px;
+   }
+}
+@media (min-width:901px) {
+   body{
+      font-size: 25px;
+   }
+}
+body{
+   /*background-image: url("../images/savannahImage.jpg");*/
+   background:linear-gradient(60deg, rgb(200,40,60),rgb(100,155,200));
+   background-size: cover;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.setup > li > a, .tool>li>a {
+   width: 100%;
+   color: white;
+   text-decoration:none;
+}
+.setup > li > a:hover, .tool>li>a:hover {
+   cursor: pointer;
+   background-color: black;
+   box-shadow: 0rem .5rem .8rem black;
+}
+.grid{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, 1.5rem);
+   grid-template-rows: repeat(auto-fill,1.5rem);
+}

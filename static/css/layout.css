@@ -1,0 +1,52 @@
+body{
+   margin: 0;
+   padding: 0;
+}
+ul{
+   list-style-type:none;
+   overflow: hidden;
+}
+.Navitems{
+   width: 80vw;
+   height: 10vh;
+   margin: auto;
+   margin-top: 1rem;
+}
+.setup {
+   float: left;
+}
+.tool {
+   float:right;  
+   padding-inline-start: 0px;
+   padding-inline-end: 40px; 
+}
+.setup > li {
+   display: inline;
+   margin: .5rem;
+   box-sizing: border-box;
+   position: relative;
+   border: 1px solid black;
+}
+.tool > li{
+   display: inline;
+   margin: .5rem;
+   box-sizing: border-box;
+   border: 1px solid black;
+   position: relative;
+}
+.grid-container{
+   margin: auto;
+   margin-top: 2rem;
+   height: 75vh;
+   width: 75vw;
+   text-align: center;
+   border: 2px solid black;
+}
+.grid{
+   border: 1px dashed black;
+   margin: auto;
+   margin-top: .6rem;
+   height: 90%;
+   width: 90%;
+   background-color: beige;
+}
