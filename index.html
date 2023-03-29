@@ -1,28 +1,39 @@
-<html>
+<DOCTYPE html>
+
    <head>
       <title>CrossWord Puzzle</title>
       <link rel="stylesheet" href="static/css/layout.css">
       <link rel="stylesheet" href="static/css/style.css">
    </head>
+
    <body>
       <main>
          <nav class="Navitems">
             <ul class="setup">
                <li><a href="#">New</a></li>
                <li><a href="#" id="open">Open</a></li>
-               <li><a href="#">Save</a></li>
-               <li><a href="#">Category</a></li>
+               <li><a href="#" id="start">Start</a></li>
+               <li><a href="#" id="category">Category </a></li>
             </ul>
             <ul class="tool">
                <li><a href="#">Sound</a></li>
             </ul>
          </nav>
-         <div class="grid-container">
-            <label for="grid-container">Complete Puzzle</label>
-            <div class="grid">
+         <label for="main-container">Complete Puzzle</label>
+         <div class="main-container">
+
+            <div class="grid-container">
+               <div class="imageContainer"></div>
+               <div class="grid"></div>
             </div>
          </div>
       </main>
-      <script src="static/src/main.js"></script>
+      <script src="static/src/global.js"></script>
+      <script src="static/src/words.js"></script>
+      <script src="static/src/createPuzzle.js"></script>
+      <script src="static/src/puzzleDefinition.js"></script>
+      <script src="static/src/puzzleGenerate.js"></script>
+      <script src="static/src/eventListeners.js"></script>
    </body>
-</html>
+
+   </html>

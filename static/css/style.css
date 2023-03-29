@@ -14,14 +14,13 @@
    }
 }
 body{
-   /*background-image: url("../images/savannahImage.jpg");*/
+   /*background-image: url("../images/kitchenTheme.jpg");*/
    background:linear-gradient(60deg, rgb(200,40,60),rgb(100,155,200));
    background-size: cover;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .setup > li > a, .tool>li>a {
-   width: 100%;
    color: white;
    text-decoration:none;
 }
@@ -30,8 +29,47 @@ body{
    background-color: black;
    box-shadow: 0rem .5rem .8rem black;
 }
-.grid{
-   display: grid;
-   grid-template-columns: repeat(auto-fill, 1.5rem);
-   grid-template-rows: repeat(auto-fill,1.5rem);
+.grid-container{
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  background: transparent;
+}
+.cell{
+   float: left;
+   box-sizing: border-box;
+   border: 1px dashed black;
+   height: 50px;
+   width: 50px;
+   font-size: 25px;
+   text-align: center;
+   text-transform: uppercase;
+}
+.puzzleImg{
+   width: 70px;
+   height: 70px;
+   margin: .6rem;
+   box-sizing: border-box;
+   border: .5px dashed white;
+   /*background-image: url('../images/apple.jpg');
+   background-size: contain;*/
+}
+#imageLabel {
+   height: 2rem;
+   width: 2rem;
+   font-size: 1.5rem;
+   font-weight: bold;
+   background: radial-gradient(rgb(110, 169, 177),rgb(250, 234, 5));
+   background-clip: text;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+.imageContainer {
+   display: flex;
+   flex-direction: row;
+   width: 35%;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   align-content: space-around;
 }

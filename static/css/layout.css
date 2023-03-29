@@ -11,9 +11,11 @@ ul{
    height: 10vh;
    margin: auto;
    margin-top: 1rem;
+   position: relative;
 }
 .setup {
    float: left;
+   overflow: hidden;
 }
 .tool {
    float:right;  
@@ -21,7 +23,7 @@ ul{
    padding-inline-end: 40px; 
 }
 .setup > li {
-   display: inline;
+   display: inline-block;
    margin: .5rem;
    box-sizing: border-box;
    position: relative;
@@ -34,19 +36,37 @@ ul{
    border: 1px solid black;
    position: relative;
 }
-.grid-container{
+.main-container{
    margin: auto;
-   margin-top: 2rem;
-   height: 75vh;
-   width: 75vw;
-   text-align: center;
+   margin-top: 1rem;
+   height: 79vh;
+   width: 90vw;
    border: 2px solid black;
+   position: relative;
+   z-index: -1;
 }
-.grid{
+.grid-container{
    border: 1px dashed black;
    margin: auto;
    margin-top: .6rem;
-   height: 90%;
-   width: 90%;
+   height: 95%;
+   width: 85%;
+}
+label{
+   height: 2rem;
+   position: relative;
+   font-weight: bold;
+}
+.grid {
+   border: 1px dashed black;
+   height: 500px;
+   width: 500px;
+   margin-top: .6rem;
    background-color: beige;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+}
+#category {
+   height: fit-content;
 }
