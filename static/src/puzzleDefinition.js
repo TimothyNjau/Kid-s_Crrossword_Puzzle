@@ -1,8 +1,48 @@
-const emptyCell = '';
-let word = [];
-
 function crosswordPuzzle() {
+  const emptyCell = '';
   let gridSize = new createGrid();
+  var gridRowWord = [], gridColumnWord = [];
+
+  function isWord(word) {
+    let validWord = false;
+    let arrayRow = {}, arrayColumn = {};
+    row = word.row, column = word.column;
+    if (updateGrid) {
+      if (word.vertical) {
+        if (isFirstLetter(row, column, word)){
+          if(isValidPosition(row-1,column)&& isEmptyCell(row-1,column)){
+            arrayColumn["numberRow"] = word.row - 1;
+          }
+          arrayColumn["word"] = word.usedWord;
+          arrayColumn["letter"] = word.usedWord.charAt(0);
+          arrayColumn["row"] = word.row;
+          arrayColumn["column"] =  word.column;
+          gridColumnWord.push(arrayColumn);
+          validWord = true;
+        }
+      } else {
+        if (isFirstLetter(row, column, word)){
+          if( isValidPosition( row, column - 1 ) && isEmptyCell(row,column - 1 )){
+            arrayRow["numberColumn"] = word.column - 1;
+          }
+          arrayRow["word"] = word.usedWord;
+          arrayRow["letter"] = word.usedWord.charAt(0);
+          arrayRow["row"] = word.row;
+          arrayRow["column"] =  word.column;
+          gridRowWord.push(arrayRow);
+          validWord = true;
+        }          
+      }
+    }
+    return validWord
+  }
+  /*function setFlag (){
+    let flag = false;
+    if(isWord(word)){
+      flag = true
+    }
+    return flag
+  }*/
   function updateGrid(word) {
     let updated = false;
     if (canBePlaced(word)) {
@@ -15,12 +55,12 @@ function crosswordPuzzle() {
     row = word.row; column = word.column;
     if (word.vertical) {
       for (let j = 0; j < word.text.length; j++) {
-        gridSize.grid[row][column].value = word.text[j];
+        gridSize.grid[row][column] = word.text[j];
         row++;
       }
     } else {
       for (let j = 0; j < word.text.length; j++) {
-        gridSize.grid[row][column].value = word.text[j];
+        gridSize.grid[row][column] = word.text[j];
         column++;
       }
     }
@@ -32,8 +72,8 @@ function crosswordPuzzle() {
       while (index < word.text.length) {
         let currentRow = word.vertical ? word.row + index : word.row;
         let currentColumn = !word.vertical ? word.column + index : word.column;
-        if ((word.text[index] === gridSize.grid[currentRow][currentColumn].value ||
-          emptyCell === gridSize.grid[currentRow][currentColumn].value) && placementLegal(currentRow, currentColumn, word)) {
+        if ((word.text[index] === gridSize.grid[currentRow][currentColumn] ||
+          emptyCell === gridSize.grid[currentRow][currentColumn]) && placementLegal(currentRow, currentColumn, word)) {
           //can place word
         }
         else {
@@ -53,18 +93,20 @@ function crosswordPuzzle() {
   } //returns a boolean expression to confirm if true or false
   // code below checks if there is a letter in the specified row & column. returns a boolean
   function isLetter(row, column) {
-    return gridSize.grid[row][column].value !== emptyCell
+    return gridSize.grid[row][column] !== emptyCell
   }
   //checks if cell is empty
   function isEmptyCell(row, column) {
     return !isLetter(row, column);
   }
-
+  function isFirstLetter(row, column, word) {
+    return gridSize.grid[row][column] === word.usedWord.charAt(0);
+  }
   //checks to see if there is interference for a set of row/column positions
   function isInterference(row, column, nextRow, nextColumn) {
     return isValidPosition(row, column) &&
       isValidPosition(nextRow, nextColumn) &&
-      isLetter(row, column) &&
+      //isLetter(row, column) &&
       isLetter(nextRow, nextColumn);
   }
 
@@ -95,9 +137,9 @@ function crosswordPuzzle() {
   //determines if a particular row/position corresponds to end of word
   function endOfWord(row, column, word) {
     if (word.vertical) {
-      return gridSize.grid[row - 1][column].value === word.text[word.text.length - 1];
+      return gridSize.grid[row - 1][column] === word.text[word.text.length - 1];
     } else {
-      return gridSize.grid[row][column - 1].value === word.text[word.text.length - 1];
+      return gridSize.grid[row][column - 1] === word.text[word.text.length - 1];
     }
   }
   //determines if a word will invade another word's territory ata certain position
@@ -131,10 +173,11 @@ function crosswordPuzzle() {
             isValidPosition(row + 1, column) &&
             isValidPosition(row, column - 1) &&
             isValidPosition(row, column + 1) &&
-            isLetter(row - 1, column) &&
-            isLetter(row + 1, column) &&
-             isLetter(row, column - 1) &&
-            isLetter(row, column + 1)) {
+            ((isLetter(row - 1, column) ||
+              isLetter(row + 1, column)) &&
+              (isLetter(row, column - 1) ||
+                isLetter(row, column + 1))
+            )) {
             ++intersections;
           }
         }
@@ -143,8 +186,13 @@ function crosswordPuzzle() {
     return intersections;
   }
   return {
+    "grid": gridSize.grid,
+    "isWord": isWord,
+    "gridRowWord":gridRowWord,
+    "gridColumnWord":gridColumnWord,
+    //"flag": setFlag,
     "update": updateGrid,
-    "isLetter":isLetter,
+    "isLetter": isLetter,
     "getIntersections": getIntersections,
   };
 }

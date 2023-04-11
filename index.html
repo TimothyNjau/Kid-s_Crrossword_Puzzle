@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 
    <head>
       <title>CrossWord Puzzle</title>
@@ -7,33 +7,65 @@
    </head>
 
    <body>
-      <main>
          <nav class="Navitems">
             <ul class="setup">
-               <li><a href="#">New</a></li>
-               <li><a href="#" id="open">Open</a></li>
-               <li><a href="#" id="start">Start</a></li>
-               <li><a href="#" id="category">Category </a></li>
+               <li>
+                  <img src="static/images/icons/custom.png" alt="" class="btnImg">
+                  <a href="#" id="open">Custom</a>
+               </li>
+               <li>
+                  <img src="static/images/icons/generate.png" alt="" class="btnImg">
+                  <a href="#" id="start">Generate</a>
+               </li>
+               <li>
+                  <img src="static/images/icons/categories_list.png" alt="" class="btnImg">
+                  <a href="#" id="category">Category
+                     <div class="dropDown">
+                        <div class="dropDownBtn">
+                           <button id="fruit">Fruits</button>
+                        </div>
+                        <div class="dropDownBtn">
+                           <button id="wild_Animals">Wild Animals</button>
+                        </div>
+                        <div class="dropDownBtn">
+                           <button id="domestic_Animals">Domestic Animals </button>
+                        </div>
+                        <div class="dropDownBtn">
+                           <button id="sports">Sports</button>
+                        </div>
+                        </div>
+                  </a>                 
+               </li>
             </ul>
             <ul class="tool">
-               <li><a href="#">Sound</a></li>
+               <li>
+                  <img src="static/images/icons/sound.png" alt="" class="btnImg" id="soundImg">
+                  <a href="#" id="sound">Sound</a>
+               </li>
+               <li>
+                  <img src="static/images/icons/check_grid.png" alt="" class="btnImg">
+                  <a href="#" id="checkGrid">Check Grid</a>
+               </li>
             </ul>
          </nav>
-         <label for="main-container">Complete Puzzle</label>
          <div class="main-container">
+            <div class="textCont">
+               <text class="label">
+                  Choose the category you want to begin with or click on 'Custom' to generate your own puzzle
 
+               </text>
+            </div>
             <div class="grid-container">
                <div class="imageContainer"></div>
                <div class="grid"></div>
             </div>
          </div>
-      </main>
       <script src="static/src/global.js"></script>
       <script src="static/src/words.js"></script>
-      <script src="static/src/createPuzzle.js"></script>
-      <script src="static/src/puzzleDefinition.js"></script>
-      <script src="static/src/puzzleGenerate.js"></script>
-      <script src="static/src/eventListeners.js"></script>
+      <script src="static/src/createPuzzle.js" defer></script>
+      <script src="static/src/puzzleDefinition.js" defer></script>
+      <script src="static/src/puzzleGenerate.js" defer></script>
+      <script src="static/src/eventListeners.js" defer></script>
    </body>
 
    </html>

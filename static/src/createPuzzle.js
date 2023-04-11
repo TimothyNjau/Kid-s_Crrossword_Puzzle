@@ -7,6 +7,7 @@ for (let slot = 0; slot < slots; slot++) {
   inputBox.className = 'cell';
   inputBox.id = row + "_" + column;
   inputBox.type = 'text';
+  inputBox.disabled = true;
   gridCanvas.appendChild(inputBox);
   row++;
   if (row >= gridRowCnt) {
@@ -14,7 +15,7 @@ for (let slot = 0; slot < slots; slot++) {
     column++;
   }
 }
-for (let i = 0; i < 7; i++) {
+/*for (let i = 0; i < 7; i++) {
   let puzzleImages = document.createElement("img");
   let label = document.createElement("label");
   let div = document.createElement("div");
@@ -28,27 +29,20 @@ for (let i = 0; i < 7; i++) {
   div.appendChild(puzzleImages);
   div.appendChild(label);
   imageContainer.appendChild(div);
-}
-
+}*/
 class createGrid {
-  constructor(){
+  constructor() {
     //code below loads grid cells created above to an array: arr
-  const arr = document.getElementsByClassName("cell");
-  //create a 2D array: gridSize
-  const gridSize = []
-  for (row = 0; row < gridRowCnt; row++) {
-    gridSize[row] = [];
-    for (column = 0; column < gridColumnCnt; column++) {
-      gridSize[row][column] = column
+    const emptyCell = '';
+    //create a 2D array: gridSize
+    const gridSize = []
+    for (row = 0; row < gridRowCnt; row++) {
+      gridSize[row] = [];
+      for (column = 0; column < gridColumnCnt; column++) {
+        gridSize[row][column] = emptyCell;
+      }
     }
-  }
-  //assign each cell to specific gridSize[row][column]
-  for (let i = 0; i < gridRowCnt; i++) {
-    for (let j = 0; j < gridColumnCnt; j++) {
-      gridSize[i][j] = arr[`${i}_${j}`];
-    }
-  }
-  this.grid = gridSize;
+    this.grid = gridSize;
   }
 }
 
