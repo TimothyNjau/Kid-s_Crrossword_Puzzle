@@ -25,7 +25,6 @@ soundBtn.addEventListener("click", () => {
 
 let takeInput = (element) => {
   element.addEventListener('input', () => {
-    console.log(element.value);
     return element.value;
   })
 }
@@ -175,6 +174,8 @@ function loadTextInput() {
   submitBtn.addEventListener("click", () => {
     let myAnswers = document.querySelectorAll("#inpAns"),
       myClues = document.querySelectorAll("#inpClue");
+
+    textObject = {};
 
     for (let x = 0; x < myAnswers.length; x++) {
       if (myAnswers[x].value && myClues[x].value) {

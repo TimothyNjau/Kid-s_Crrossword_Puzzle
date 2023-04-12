@@ -106,15 +106,14 @@ let createCrosswordPuzzle = () => {
             }
             if (puzzle.getIntersections() >= 6) {
                 break;
-            }            
-            if (usedWords.length > 3) {
+            }
+            if (usedWords.length > 2) {
                 let gridAnswer = [];
                 gridAnswer.push(usedWords);
                 Object.assign(puzzle, gridAnswer);
                 generatedGrids.push(puzzle);
             }
             usedWords = [];
-            //debugger;
         }
     }
     function displayCrossword(bestGrid) {
@@ -136,7 +135,7 @@ let createCrosswordPuzzle = () => {
                 }
             }
         }
-        bestGrid[0].forEach(elem =>{
+        bestGrid[0].forEach(elem => {
             let wordElem = elem;
             for (let i = 0; i < bestGrid.gridRowWord.length; i++) {
                 if (bestGrid.gridRowWord[i].word === wordElem) {
@@ -145,9 +144,7 @@ let createCrosswordPuzzle = () => {
                     arr[`${row}_${column}`].value = bestGrid.grid[row][column];
                     printNumber(bestGrid.gridRowWord[i].row, bestGrid.gridRowWord[i].numberColumn, bestGrid.gridRowWord[i].row);
                     break;
-                } /*else {
-                    continue;
-                }*/
+                }
             }
             for (let i = 0; i < bestGrid.gridColumnWord.length; i++) {
                 if (bestGrid.gridColumnWord[i].word === wordElem) {
@@ -155,12 +152,9 @@ let createCrosswordPuzzle = () => {
                     column = bestGrid.gridColumnWord[i].column;
                     arr[`${row}_${column}`].value = bestGrid.grid[row][column];
                     printNumber(bestGrid.gridColumnWord[i].numberRow, bestGrid.gridColumnWord[i].column);
-                    break;                   
-                }/* else {
-                    continue;
-                }*/
+                    break;
+                }
             }
-            //debugger;
         })
         function printNumber(rowPass, columnPass) {
             let row = rowPass, column = columnPass;
@@ -175,7 +169,6 @@ let createCrosswordPuzzle = () => {
             for (let column = 0; column < gridColumnCnt; column++) {
                 if (bestGrid.isLetter(row, column)) {
                     setInterval(takeInput(arr[`${row}_${column}`]), 500);
-                     //setInterval(checkAnswer, 1500);
                 }
                 function checkAnswer() {
                     if (arr[`${row}_${column}`].value === bestGrid.grid[row][column]) {
@@ -191,10 +184,10 @@ let createCrosswordPuzzle = () => {
     bestGrid = getBestGrid(generatedGrids);
     displayCrossword(bestGrid);
     getAnswer(bestGrid);
-    myAudio.src = "./static/sounds/congrats.mp3";
     checkGridbtn.addEventListener('click', (bestGrid) => {
         const arr = document.getElementsByClassName("cell");
         bestGrid = getBestGrid(generatedGrids);
+        let a = 0, b = 0;
         for (let row = 0; row < gridRowCnt; row++) {
             gridAns[row] = [];
             for (let column = 0; column < gridColumnCnt; column++) {
@@ -202,10 +195,21 @@ let createCrosswordPuzzle = () => {
                 if (bestGrid.isLetter(row, column) && !arr[`${row}_${column}`].disabled) {
                     if (bestGrid.grid[row][column] === gridAns[row][column]) {
                         arr[`${row}_${column}`].style.backgroundColor = "#90EE90";
-                        myAudio.play();
+                        a++;
+                        b--;
+                    } else {
+                        arr[`${row}_${column}`].style.backgroundColor = "#ff3333";
+                        b++;
                     }
                 }
             }
+        }
+        if (b < 0) {
+            myAudio.src = "./static/sounds/congrats.mp3";
+            myAudio.play();
+        } else if (b > 0) {
+            myAudio.src = "./static/sounds/failed.mp3";
+            myAudio.play();
         }
     })
     return { "crossWord": bestGrid }

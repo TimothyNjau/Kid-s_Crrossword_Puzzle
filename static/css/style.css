@@ -26,8 +26,9 @@ body{
 }
 .setup > li:hover, .tool>li:hover {
    cursor: pointer;
-   border: 2px solid  rgb(19, 18, 18);
-   box-shadow: 0rem .5rem .8rem black;
+   border-bottom: 1.5px solid  rgb(19, 18, 18);
+   border-right: 1.5px solid  rgb(19, 18, 18);
+   box-shadow: -2px 2px 5px 0px black;
 }
 .grid-container{
   position: relative;
